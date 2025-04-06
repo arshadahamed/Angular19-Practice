@@ -178,7 +178,7 @@ calc() }"></ng-container> -->
 *ngTemplateOutlet="employeeTable; context:{$implicit:employees}">
 </ng-container> -->
 
-<h1 *ngIf="showHeading">Portfolio</h1>
+<!-- <h1 @If(showHeading)>Portfolio</h1>
 <ng-container *ngIf="!submitted; else preview">
   <h2>Personal Information</h2>
   <form>
@@ -241,4 +241,9 @@ calc() }"></ng-container> -->
     </div>
     <button class="btn-edit" (click)="formEdit()">Edit</button>
   </div>
-</ng-template>
+</ng-template> -->
+
+
+<h1>Component Creation Hook</h1>
+<!-- <button (click)="updateValue()">Update Value</button>
+<app-test [inputValue] = "inputValue"></app-test> -->

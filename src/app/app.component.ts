@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TestComponent } from './test/test.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, FormsModule, CommonModule],
+  imports: [RouterOutlet,TestComponent, FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -163,22 +164,46 @@ export class AppComponent {
 //   { id: 7, name: 'Clark Kent', salary: 100000 },
 // ];
 
-nm = '';
-em = '';
-ph = '';
-add = '';
-submitted:boolean = false;
-showHeading: boolean = true;
-qualification = [{ school:'', degree: '', year: '' }];
-addQualification() {
-  this.qualification.push({ school:'', degree: '', year: '' });
+
+// nm = '';
+// em = '';
+// ph = '';
+// add = '';
+// submitted:boolean = false;
+// showHeading: boolean = true;
+// qualification = [{ school:'', degree: '', year: '' }];
+// addQualification() {
+//   this.qualification.push({ school:'', degree: '', year: '' });
+// }
+// formSubmit(){
+//   this.submitted = true;
+//   this.showHeading = false;
+// }
+// formEdit(){
+//   this.submitted = false;
+//   this.showHeading = true;
+// }
+
+// inputValue: string = 'New Value';
+// updateValue(){
+//   this.inputValue = "App Componenet";
+// }
+count: number = 0;
+counterInterval: any;
+
+startCounter() {
+  this.counterInterval =  setInterval(() => {
+    if (this.count <= 5) {
+      console.log(this.count++);
+    } else {
+      clearInterval(this.counterInterval);
+    }
+  }, 1000);
 }
-formSubmit(){
-  this.submitted = true;
-  this.showHeading = false;
+ngOnInit(): void {
+    this.startCounter();
 }
-formEdit(){
-  this.submitted = false;
-  this.showHeading = true;
+
+constructor() {
 }
 }
