@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { RouterOutlet  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -188,22 +188,46 @@ export class AppComponent implements OnInit {
 // updateValue(){
 //   this.inputValue = "App Componenet";
 // }
-count: number = 0;
-counterInterval: any;
+// count: number = 0;
+// counterInterval: any;
 
-startCounter() {
-  this.counterInterval =  setInterval(() => {
-    if (this.count <= 5) {
-      console.log(this.count++);
-    } else {
-      clearInterval(this.counterInterval);
-    }
-  }, 1000);
+// startCounter() {
+//   this.counterInterval =  setInterval(() => {
+//     if (this.count <= 5) {
+//       console.log(this.count++);
+//     } else {
+//       clearInterval(this.counterInterval);
+//     }
+//   }, 1000);
+// }
+// ngOnInit(): void {
+//     this.startCounter();
+// }
+
+// constructor() {
+// }
+
+// user = {
+//   name: 'John Doe',
+// };
+// changeUserName() {
+//   this.user.name = 'Jane Smith';
+//   console.log(this.user.name);
+// }
+// dataFromParent: string = '';
+// ngAfterContentInit(): void {
+//   console.log('ngAfterContentInit called');
+// }
+// sendDataToChild(){
+//   let random = Math.floor(Math.random() * 10);
+//   this.dataFromParent = `Data from Parent Component : ${random}`;
+// }
+
+displayComponent: boolean = true;
+toggle(): void {
+  this.displayComponent = !this.displayComponent;
 }
 ngOnInit(): void {
-    this.startCounter();
-}
-
-constructor() {
+  console.log('ngOnInit called');
 }
 }

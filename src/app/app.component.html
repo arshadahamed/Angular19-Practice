@@ -244,6 +244,34 @@ calc() }"></ng-container> -->
 </ng-template> -->
 
 
-<h1>Component Creation Hook</h1>
+<!-- <h1>Component Creation Hook</h1> -->
 <!-- <button (click)="updateValue()">Update Value</button>
 <app-test [inputValue] = "inputValue"></app-test> -->
+
+<!-- <h1>Component Updation Hook</h1>
+<div>
+  <app-test [user] = "user"></app-test>
+  <button (click)="changeUserName()">Change User Name</button>
+</div> -->
+
+<!-- <h1>Component Updation Hook</h1>
+<div class="parent-component">
+ <h2>Parent Component</h2>
+ <button (click)="sendDataToChild()">Generate Number</button>
+
+ <app-test>
+  <h3>{{dataFromParent}}</h3>
+  <div #contentWrapper>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, fugiat deleniti cumque soluta placeat quia alias laborum ratione repellendus voluptatibus delectus hic voluptates. Fugit sapiente asperiores quam eveniet voluptatum fugiat!
+  </div>
+ </app-test>
+</div> -->
+
+<div>
+  <h1>App Component</h1>
+  <button (click)="toggle()">Show/Hide</button>
+
+  @if(displayComponent){
+    <app-test></app-test>
+  }
+</div>
