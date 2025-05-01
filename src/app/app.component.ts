@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
 import { HighlightElementDirective } from './highlight-element.directive';
 import { AppendTextPipe } from './append-text.pipe';
+import { SortNumbersPipe } from './sort-numbers.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, AppendTextPipe],
+  imports: [FormsModule, CommonModule, SortNumbersPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -286,4 +287,10 @@ export class AppComponent {
 //   this.showJson = !this.showJson;
 // }
 
+numbers: number[] = [5, 3, 8, 1, 4, 2, 7, 6];
+sortOrder: 'asc' | 'desc' = 'asc'; // Default sort order is ascending
+showList: boolean = false;
+showSorting(){
+  this.showList = true;
+}
 }

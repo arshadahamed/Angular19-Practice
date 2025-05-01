@@ -347,4 +347,28 @@ calc() }"></ng-container> -->
 </div>
 <h2 style="text-align: center;">{{ 110.6789 | number:"3.2-2" | currency:"USD"}}</h2> -->
 
-<h1 style="text-align:center;">{{'Good' | appendText:" Morning"}}</h1>
+<!-- <h1 style="text-align:center;">{{'Good' | appendText:" Morning"}}</h1> -->
+
+<h1>Given Array: <span>[{{numbers}}]</span></h1>
+<div class="button-container">
+  <button type="button" (click)="sortOrder = 'asc'; showSorting()">Sort Asending</button>
+  <button type="button" (click)="sortOrder = 'desc'; showSorting()">Sort Descending</button>
+</div>
+@if(showList){
+  <div class="sorted-out">
+    @if(sortOrder == 'asc'){
+      <h2>Sorted Array in Ascending Order</h2>
+    } @else if(sortOrder == 'desc'){
+      <h2>Sorted Array in Descending Order</h2>
+    }
+    <ul class="number-list">
+      @for( number of numbers | sortNumbers: sortOrder; track number) {
+         <li>
+          {{ number }}
+         </li>
+      }
+    </ul>
+  </div>
+}
+
+
