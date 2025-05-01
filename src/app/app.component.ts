@@ -1,17 +1,18 @@
-import { AfterContentInit, Component, OnInit } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
 import { RouterOutlet  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
+import { HighlightElementDirective } from './highlight-element.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TestComponent, FormsModule, CommonModule],
+  imports: [RouterOutlet,TestComponent, FormsModule, CommonModule, HighlightElementDirective],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -223,11 +224,27 @@ export class AppComponent implements OnInit {
 //   this.dataFromParent = `Data from Parent Component : ${random}`;
 // }
 
-displayComponent: boolean = true;
-toggle(): void {
-  this.displayComponent = !this.displayComponent;
-}
-ngOnInit(): void {
-  console.log('ngOnInit called');
-}
+// displayComponent: boolean = true;
+// toggle(): void {
+//   this.displayComponent = !this.displayComponent;
+// }
+// ngOnInit(): void {
+//   console.log('ngOnInit called');
+// }
+
+// displayMessage: string = "Hi! Mesage from Parent component";
+
+// @ViewChild(TestComponent) testComponent?: TestComponent;
+// @ViewChild('btnIncr') btnRef?: ElementRef<HTMLButtonElement>;
+// incrChildCounter(){
+//   console.log(this.testComponent);
+//   this.testComponent?.incrCounter();
+// }
+// ngAfterViewInit(): void {
+//   if(this.btnRef?.nativeElement) {
+//     this.btnRef.nativeElement.innerHTML = 'Counter ++';
+//   }
+// }
+
+
 }

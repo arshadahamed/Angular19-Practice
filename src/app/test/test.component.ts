@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, ContentChild, DoCheck, ElementRef, OnDestroy, OnInit, ViewChild, Input } from '@angular/core';
 
 @Component({
   selector: 'app-test',
@@ -7,7 +7,7 @@ import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, Conten
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
-export class TestComponent implements OnInit,OnDestroy {
+export class TestComponent implements AfterContentInit {
   // @Input() inputValue: string = '';
   // previousValue: string | undefined;
   // currentValue: string | undefined;
@@ -51,10 +51,26 @@ export class TestComponent implements OnInit,OnDestroy {
   //   console.log('ngAfterViewInit() called', this.wrapper);
   // }
 
-  ngOnInit(): void {
-    console.log('TestComponent : ngOnInit() called');
+  // ngOnInit(): void {
+  //   console.log('TestComponent : ngOnInit() called');
+  // }
+  // ngOnDestroy(): void {
+  //   console.log('TestComponent : ngOnDestroy() called');
+  // }
+
+  // @Input () recieveMessage: string = '';
+
+  // count: number = 0;
+  // incrCounter(){
+  //   this.count++;
+  // }
+
+  @ContentChild('showPara') paraRef?: ElementRef;
+  ngAfterContentInit(): void {
+      const content = this.paraRef?.nativeElement;
+      content.style.fontStyle = 'italic';
+      content.style.fontWeight = 'bold';
+      content.style.color = '#afeeee';
   }
-  ngOnDestroy(): void {
-    console.log('TestComponent : ngOnDestroy() called');
-  }
+
 }

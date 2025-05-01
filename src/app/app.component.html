@@ -267,11 +267,32 @@ calc() }"></ng-container> -->
  </app-test>
 </div> -->
 
-<div>
+<!-- <div>
   <h1>App Component</h1>
   <button (click)="toggle()">Show/Hide</button>
 
   @if(displayComponent){
     <app-test></app-test>
   }
+</div> -->
+
+<!-- <div>
+  <h1>Parent Component</h1>
+  <app-test [recieveMessage]="displayMessage" ></app-test>
+</div> -->
+
+<!-- <div>
+  <h2>App Component</h2>
+  <button #btnIncr (click)="incrChildCounter()">Increment Counter</button>
+  <app-test></app-test>
+</div> -->
+
+<div appHighlightElement>
+  <h2>App Component</h2>
+  <app-test>
+    <section>
+      <h3>Heading</h3>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur nesciunt quod, accusamus sed nisi doloremque? Eveniet, voluptates consequuntur. Vel molestias temporibus voluptates cumque corporis eum magnam pariatur doloribus sunt dolorum?</p>
+    </section>
+  </app-test>
 </div>
