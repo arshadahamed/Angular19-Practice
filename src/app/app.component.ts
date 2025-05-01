@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
 import { HighlightElementDirective } from './highlight-element.directive';
+import { AppendTextPipe } from './append-text.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, AppendTextPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -253,35 +254,36 @@ export class AppComponent {
 
 //
 
-showJson: boolean = false;
-students =[
-  {name: 'John', age:21, gender: "Male", major: 'Angular'},
-  {
-    name: 'Jane',
-    age: 22,
-    genger:"Male",
-    major: 'React'
-  },
-  {
-    name: 'Sam',
-    age: 23,
-    gender:"Female",
-    major: 'JavaScript'
-  },
-  {
-    name: 'Peter',
-    age: 24,
-    gender:"Male",
-    major: 'Node.js'
-  },
-  {
-    name: 'Fathima',
-    age: 25,
-    gender:"Female",
-    major: 'Python'
-  }
-];
-toggleJson(){
-  this.showJson = !this.showJson;
-}
+// showJson: boolean = false;
+// students =[
+//   {name: 'John', age:21, gender: "Male", major: 'Angular'},
+//   {
+//     name: 'Jane',
+//     age: 22,
+//     genger:"Male",
+//     major: 'React'
+//   },
+//   {
+//     name: 'Sam',
+//     age: 23,
+//     gender:"Female",
+//     major: 'JavaScript'
+//   },
+//   {
+//     name: 'Peter',
+//     age: 24,
+//     gender:"Male",
+//     major: 'Node.js'
+//   },
+//   {
+//     name: 'Fathima',
+//     age: 25,
+//     gender:"Female",
+//     major: 'Python'
+//   }
+// ];
+// toggleJson(){
+//   this.showJson = !this.showJson;
+// }
+
 }
