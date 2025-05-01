@@ -8,7 +8,7 @@ import { HighlightElementDirective } from './highlight-element.directive';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TestComponent, FormsModule, CommonModule, HighlightElementDirective],
+  imports: [FormsModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -246,5 +246,42 @@ export class AppComponent {
 //   }
 // }
 
+// title : string = 'Example of Pipes in Angular';
+// showDate: Date = new Date();
 
+// itemArray = ['Item01', 'Item02', 'Item03', 'Item04', 'Item05'];
+
+//
+
+showJson: boolean = false;
+students =[
+  {name: 'John', age:21, gender: "Male", major: 'Angular'},
+  {
+    name: 'Jane',
+    age: 22,
+    genger:"Male",
+    major: 'React'
+  },
+  {
+    name: 'Sam',
+    age: 23,
+    gender:"Female",
+    major: 'JavaScript'
+  },
+  {
+    name: 'Peter',
+    age: 24,
+    gender:"Male",
+    major: 'Node.js'
+  },
+  {
+    name: 'Fathima',
+    age: 25,
+    gender:"Female",
+    major: 'Python'
+  }
+];
+toggleJson(){
+  this.showJson = !this.showJson;
+}
 }

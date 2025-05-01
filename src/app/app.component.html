@@ -287,7 +287,7 @@ calc() }"></ng-container> -->
   <app-test></app-test>
 </div> -->
 
-<div appHighlightElement>
+<!-- <div appHighlightElement>
   <h2>App Component</h2>
   <app-test>
     <section>
@@ -295,4 +295,54 @@ calc() }"></ng-container> -->
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur nesciunt quod, accusamus sed nisi doloremque? Eveniet, voluptates consequuntur. Vel molestias temporibus voluptates cumque corporis eum magnam pariatur doloribus sunt dolorum?</p>
     </section>
   </app-test>
+</div> -->
+
+<!-- <h1 style="text-align: center;">{{ showDate | date : "dd MMMM yyyy" | uppercase}}</h1> -->
+
+<!-- <h2>{{ "Angular Slice pipe" | slice: 0 : 13 }}</h2>
+<h2>{{ "Angular Slice pipe" | slice: 0 : -11 }}</h2>
+<h2>{{ "Angular Slice pipe" | slice: -11 }}</h2> -->
+
+<!-- <h2>{{ itemArray | slice: 0:3}}</h2> -->
+
+<!-- <div class="product-grid">
+  <div
+   class="product-card"
+   *ngFor="let product of products | slice: startIndex : endIndex">
+    <h2>{{product.name}}</h2>
+    <img [src]="product.imageUrl" alt="Course Image" />
+  </div>
+  <div class="btn-container">
+    <button type="button" (click)="previousPage()" [disabled]="startIndex == 0">Previous</button>
+    <button type="button" (click)="nextPage()" [disabled]="endIndex >= products.length">Next</button>
+  </div>
 </div>
+<h2 style="text-align: center;">Product ID: {{ 110.6789 | number:"3.2-2"}}</h2> -->
+
+
+<h1>Student List</h1>
+<table border="1" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Major</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{ student.name }}</td>
+      <td>{{ student.age }}</td>
+      <td>{{ student.gender}}</td>
+      <td>{{ student.major }}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" (click)="toggleJson()">JSON Format</button>
+
+<div *ngIf="showJson">
+  <h2>JSON Format</h2>
+  <pre>{{ students | json | titlecase }}</pre>
+</div>
+
