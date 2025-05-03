@@ -7,11 +7,12 @@ import { HighlightElementDirective } from './highlight-element.directive';
 import { AppendTextPipe } from './append-text.pipe';
 import { SortNumbersPipe } from './sort-numbers.pipe';
 import { LetterCountPipe } from './letter-count.pipe';
+import { SumOfNumbersPipe } from './sum-of-numbers.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, SortNumbersPipe, LetterCountPipe],
+  imports: [FormsModule, CommonModule, SortNumbersPipe, LetterCountPipe, SumOfNumbersPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -295,5 +296,10 @@ export class AppComponent {
 //   this.showList = true;
 // }
 
-stringVal: string = '';
+// stringVal: string = '';
+
+myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+updateValue(){
+  this.myArray.push(11);
+}
 }
