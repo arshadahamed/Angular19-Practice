@@ -382,7 +382,31 @@ calc() }"></ng-container> -->
   </div>
 </div> -->
 
-<p>The sum is {{myArray | sumOfNumbers }}</p>
-<button (click)="updateValue()">Update Value</button>
+<!-- <p>The sum is {{myArray | sumOfNumbers }}</p>
+<button (click)="updateValue()">Update Value</button> -->
 
+<!-- <router-outlet>
+  <a routerLink="./home">Home Component</a>
+</router-outlet> -->
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navbar with Routes</title>
+</head>
+<body>
+  <header>
+    <!-- <nav>
+      <ul>
+        <li><a href="#" routerLink="./home">Home</a></li>
+        <li><a href="#" routerLink="./about">About</a></li>
+        <li><a href="#" routerLink="./services">Services</a></li>
+        <li><a href="#" routerLink="./contact">Contact</a></li>
+      </ul>
+    </nav> -->
+    <router-outlet></router-outlet>
+  </header>
+</body>
+</html>

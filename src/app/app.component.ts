@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet  } from '@angular/router';
+import { RouterLink, RouterOutlet  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
@@ -12,7 +12,7 @@ import { SumOfNumbersPipe } from './sum-of-numbers.pipe';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, SortNumbersPipe, LetterCountPipe, SumOfNumbersPipe],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -298,8 +298,9 @@ export class AppComponent {
 
 // stringVal: string = '';
 
-myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-updateValue(){
-  this.myArray.push(11);
-}
+// myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// updateValue(){
+//   this.myArray.push(11);
+// }
+
 }
