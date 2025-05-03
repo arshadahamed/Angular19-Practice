@@ -349,7 +349,7 @@ calc() }"></ng-container> -->
 
 <!-- <h1 style="text-align:center;">{{'Good' | appendText:" Morning"}}</h1> -->
 
-<h1>Given Array: <span>[{{numbers}}]</span></h1>
+<!-- <h1>Given Array: <span>[{{numbers}}]</span></h1>
 <div class="button-container">
   <button type="button" (click)="sortOrder = 'asc'; showSorting()">Sort Asending</button>
   <button type="button" (click)="sortOrder = 'desc'; showSorting()">Sort Descending</button>
@@ -369,6 +369,17 @@ calc() }"></ng-container> -->
       }
     </ul>
   </div>
-}
+} -->
+
+<div class="container">
+  <h1>Letter Count</h1>
+  <div class="inputbox">
+    <input type="text" required [(ngModel)]="stringVal"/>
+    <span>Enter String</span>
+    <div class="result-container">
+      <p>{{stringVal | letterCount}} letters</p>
+    </div>
+  </div>
+</div>
 
 
