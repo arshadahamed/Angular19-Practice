@@ -10,7 +10,9 @@
     @for (emp of employees; track $index){
       <tr>
         <td>
-          <a href="#" [routerLink]="['/employee', emp.empName, emp.empId]">
+          <a href="#" [routerLink]="['/employee']"
+             [queryParams]="{ empId: emp.empId, empName: emp.empName }">
+            {{ emp.empName }}
             {{ emp.empDept }}
           </a>
         </td>
