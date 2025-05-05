@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { Child2Component } from './child2/child2.component';
+import { ProductsComponent } from './products/products.component';
+import { ShirtsComponent } from './shirts/shirts.component';
+import { PantsComponent } from './pants/pants.component';
+import { ShoesComponent } from './shoes/shoes.component';
 
 export const routes: Routes = [
   {path: '', component: AppComponent}, // Default route
@@ -16,6 +20,13 @@ export const routes: Routes = [
   {path: 'about', component:AboutComponent},
   {path: 'contact', component:ContactComponent},
   {path: 'services', component:ServicesComponent},
+  {path: 'products', component:ProductsComponent,
+    children:[
+      {path: 'shirts', component: ShirtsComponent},
+      {path: 'pants', component: PantsComponent},
+      {path: 'shoes', component:ShoesComponent}
+    ]
+  },
   {path:'employee/:empName', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
   {path: 'parent', component:ParentComponent,
     children:[

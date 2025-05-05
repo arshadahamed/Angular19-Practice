@@ -398,14 +398,22 @@ calc() }"></ng-container> -->
 </head>
 <body>
   <header>
-    <!-- <nav>
+    <nav>
       <ul>
         <li><a href="#" routerLink="./home">Home</a></li>
+        <li class="dropdown">
+          <a href="#" routerLink="/products">Products</a>
+          <ul class="dropdown-menu">
+            <a href="#" routerLink="/products/shirts">Shirts</a>
+            <a href="#" routerLink="/products/pants">Pants</a>
+            <a href="#" routerLink="/products/shoes">Shoes</a>
+          </ul>
+        </li>
         <li><a href="#" routerLink="./about">About</a></li>
         <li><a href="#" routerLink="./services">Services</a></li>
         <li><a href="#" routerLink="./contact">Contact</a></li>
       </ul>
-    </nav> -->
+    </nav>
     <router-outlet></router-outlet>
   </header>
 </body>
