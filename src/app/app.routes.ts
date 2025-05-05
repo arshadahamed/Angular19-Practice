@@ -29,7 +29,7 @@ export const routes: Routes = [
       {path: 'shoes', component:ShoesComponent}
     ]
   },
-  {path:'employee/:empName', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
+  {path:'employee/:id/:name', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
   {path: 'parent', component:ParentComponent,
     children:[
     {path: 'child1', component: ChildComponent},
