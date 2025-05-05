@@ -15,13 +15,15 @@ import { PantsComponent } from './pants/pants.component';
 import { ShoesComponent } from './shoes/shoes.component';
 
 export const routes: Routes = [
-  {path: '', component: AppComponent}, // Default route
+  // {path: '', component: AppComponent}, // Default route
+  {path: '', redirectTo:'/home', pathMatch:'full'}, // Default route
   {path: 'home', component: HomeComponent},
   {path: 'about', component:AboutComponent},
   {path: 'contact', component:ContactComponent},
   {path: 'services', component:ServicesComponent},
   {path: 'products', component:ProductsComponent,
     children:[
+      {path:'', redirectTo:'shirts', pathMatch:'full'}, // Redirect to shirts if no child route is specified
       {path: 'shirts', component: ShirtsComponent},
       {path: 'pants', component: PantsComponent},
       {path: 'shoes', component:ShoesComponent}
