@@ -13,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
 import { ShirtsComponent } from './shirts/shirts.component';
 import { PantsComponent } from './pants/pants.component';
 import { ShoesComponent } from './shoes/shoes.component';
+import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
@@ -29,12 +30,13 @@ export const routes: Routes = [
       {path: 'shoes', component:ShoesComponent}
     ]
   },
-  {path:'employee/:id/:name', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
+  {path:'employee', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
   {path: 'parent', component:ParentComponent,
     children:[
     {path: 'child1', component: ChildComponent},
     {path: 'child2', component: Child2Component},
     ],
   },
+  {path:'employee-detail', component:EmployeeDetailComponent}, // Route to EmployeeDetailComponent
   {path:'**', component:PageNotFoundComponent}, // Wildcard route for a 404 page
 ];

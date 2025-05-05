@@ -1,4 +1,4 @@
-<h1>Employee ID: {{id}}</h1>
+<!-- <h1>Employee ID: {{id}}</h1>
 <p>Employee Name: {{name}}</p>
 <table>
   <thead>
@@ -19,4 +19,17 @@
       </tr>
     }
   </tbody>
-</table>
+</table> -->
+
+<h1>Employees</h1>
+<div>
+  <ul>
+    @for (emp of employees; track emp.empId) {
+      <li>
+        {{ emp.empId}}
+        <button (click)="navigateToDetail(emp.empId, emp.empName)">View Details</button>
+      </li>
+    }
+  </ul>
+</div>
+
