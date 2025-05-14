@@ -8,6 +8,7 @@ import { AppendTextPipe } from './append-text.pipe';
 import { SortNumbersPipe } from './sort-numbers.pipe';
 import { LetterCountPipe } from './letter-count.pipe';
 import { SumOfNumbersPipe } from './sum-of-numbers.pipe';
+import { EmployeeService } from './dependencies/employee.service';
 
 @Component({
   selector: 'app-root',
@@ -303,4 +304,14 @@ export class AppComponent {
 //   this.myArray.push(11);
 // }
 
+employees: any[];
+empId: number = 0;
+emp: any;
+constructor(private e: EmployeeService) {
+  this.employees = this.e.getEmployees();
+}
+showDetails(employeeId: number) {
+  this.empId = employeeId;
+  this.emp = this.e.getEmployeeById(employeeId);
+}
 }
