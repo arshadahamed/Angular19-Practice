@@ -9,11 +9,12 @@ import { SortNumbersPipe } from './sort-numbers.pipe';
 import { LetterCountPipe } from './letter-count.pipe';
 import { SumOfNumbersPipe } from './sum-of-numbers.pipe';
 import { EmployeeService } from './dependencies/employee.service';
+import { ProductsComponent } from "./products/products.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -304,14 +305,14 @@ export class AppComponent {
 //   this.myArray.push(11);
 // }
 
-employees: any[];
-empId: number = 0;
-emp: any;
-constructor(private e: EmployeeService) {
-  this.employees = this.e.getEmployees();
-}
-showDetails(employeeId: number) {
-  this.empId = employeeId;
-  this.emp = this.e.getEmployeeById(employeeId);
-}
+// employees: any[];
+// empId: number = 0;
+// emp: any;
+// constructor(private e: EmployeeService) {
+//   this.employees = this.e.getEmployees();
+// }
+// showDetails(employeeId: number) {
+//   this.empId = employeeId;
+//   this.emp = this.e.getEmployeeById(employeeId);
+// }
 }
