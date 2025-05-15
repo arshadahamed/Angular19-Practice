@@ -10,13 +10,18 @@ import { LetterCountPipe } from './letter-count.pipe';
 import { SumOfNumbersPipe } from './sum-of-numbers.pipe';
 import { EmployeeService } from './dependencies/employee.service';
 import { ProductsComponent } from "./products/products.component";
+import { CubeService } from './services/cube.service';
+import { PowerService } from './services/power.service';
+import { NotificationComponent } from "./notification/notification.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent],
+  providers: [CubeService, PowerService],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+
 })
 export class AppComponent {
 // inputValue: string= 'Hello';
@@ -315,4 +320,10 @@ export class AppComponent {
 //   this.empId = employeeId;
 //   this.emp = this.e.getEmployeeById(employeeId);
 // }
+
+constructor(public cubeService: CubeService ){}
+calcCube(): number{
+    return this.cubeService.calculateCube(5);
+}
+
 }
