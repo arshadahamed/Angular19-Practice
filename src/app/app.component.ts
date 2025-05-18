@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, Inject, inject, Injectable, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, RouterOutlet  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,17 +13,21 @@ import { ProductsComponent } from "./products/products.component";
 import { CubeService } from './services/cube.service';
 import { PowerService } from './services/power.service';
 import { NotificationComponent } from "./notification/notification.component";
+import { LogMessage1Service } from './services/log-message1.service';
+import { LogMessage2Service } from './services/log-message2.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent],
-  providers: [CubeService, PowerService],
+  providers: [CubeService, PowerService,
+            {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
+            {provide: LogMessage2Service, useClass:LogMessage2Service}],//This is a class Type Token
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -321,9 +325,19 @@ export class AppComponent {
 //   this.emp = this.e.getEmployeeById(employeeId);
 // }
 
-constructor(public cubeService: CubeService ){}
-calcCube(): number{
-    return this.cubeService.calculateCube(5);
-}
+// constructor(public cubeService: CubeService ){}
+// calcCube(): number{
+//     return this.cubeService.calculateCube(5);
+// }
 
+// public logger = inject(LogMessage1Service);
+// ngOnInit(): void {
+//     this.logger.log();
+// }
+
+constructor(@Inject('LOG_MSG1') private logger: LogMessage1Service) {
+}
+ngOnInit(): void {
+this.logger.log();
+}
 }
