@@ -15,6 +15,7 @@ import { PowerService } from './services/power.service';
 import { NotificationComponent } from "./notification/notification.component";
 import { LogMessage1Service } from './services/log-message1.service';
 import { LogMessage2Service } from './services/log-message2.service';
+import { STR_MSG } from './dependencies/injection-token';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,10 @@ import { LogMessage2Service } from './services/log-message2.service';
   imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent],
   providers: [CubeService, PowerService,
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
-            {provide: LogMessage2Service, useClass:LogMessage2Service}],//This is a class Type Token
-  templateUrl: './app.component.html',
+            {provide: LogMessage2Service, useClass:LogMessage2Service},//This is a class Type Token
+            {provide: 'STR_MSG', useValue: 'This is a value Type Token'}, //This is a value Type Token
+            ],
+            templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
 })
@@ -335,9 +338,13 @@ export class AppComponent implements OnInit {
 //     this.logger.log();
 // }
 
-constructor(@Inject('LOG_MSG1') private logger: LogMessage1Service) {
+// constructor(@Inject('LOG_MSG1') private logger: LogMessage1Service) {
+// }
+// ngOnInit(): void {
+// this.logger.log();
+// }
+
+constructor(@Inject('STR_MSG') public msg: string) {
 }
-ngOnInit(): void {
-this.logger.log();
-}
+ngOnInit(): void {}
 }
