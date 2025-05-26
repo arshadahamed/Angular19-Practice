@@ -472,10 +472,29 @@ calc() }"></ng-container> -->
 <!-- <h1>UseFactory Property</h1>
 <h3>{{message}}</h3> -->
 
-<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" >
+<!-- <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" >
   <div>
     <label for="username">Username</label>
     <input type="text" name="username" required [(ngModel)]="user.username" />
   </div>
   <button type="submit">Submit</button>
-</form>
+</form> -->
+
+<div class="form-container">
+  <h1>Submit Form</h1>
+  <form #myForm="ngForm" (ngSubmit)="formSubmit(myForm)">
+    <div class="inputbox">
+      <input type="text" name="name" ngModel required #name="ngModel" />
+      <span>Name</span>
+    </div>
+    <div class="inputbox">
+      <input type="text" name="email" ngModel required #email="ngModel" />
+      <span>Email</span>
+    </div>
+    <div class="inputbox">
+      <button type="submit">Submit</button>
+      <button type="button" (click)="resetValue(myForm)">Reset</button>
+      <button type="button" (click)="setDefault(myForm)">Default Value</button>
+    </div>
+  </form>
+</div>

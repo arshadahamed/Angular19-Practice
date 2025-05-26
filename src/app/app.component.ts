@@ -396,12 +396,34 @@ export class AppComponent {
 //   console.log('useValue Message',this.valueMsg);// This will log the message from the value Type Token
 // }
 
-user: { username:string} = { username: '' };
-submitForm(myForm: NgForm){
-  if(myForm.valid){
-    alert(`Form submitted successfully! Username: ${this.user.username}`);
-    console.log(`Form submitted successfully! Username: ${this.user.username}`);
+// user: { username:string} = { username: '' };
+// submitForm(myForm: NgForm){
+//   if(myForm.valid){
+//     alert(`Form submitted successfully! Username: ${this.user.username}`);
+//     console.log(`Form submitted successfully! Username: ${this.user.username}`);
+//   }
+// }
+
+formSubmit(myForm: NgForm) {
+  if (myForm.valid) {
+    const formValue = JSON.stringify(myForm.value);
+    console.log(formValue);
+    console.log('%cForm submitted successfully!', 'color: green; font-weight: bold; font-size: 16px;');
+    alert(`Form submitted successfully! ${formValue}`);
+  } else {
+    console.log('%cForm is invalid!', 'color: red; font-weight: bold; font-size: 16px;');
+    alert('Form is invalid! Please fill out all required fields.');
   }
 }
+resetValue(myForm: NgForm) {
+  myForm.resetForm();
+  console.log('%cForm reset successfully!', 'color: blue; font-weight: bold; font-size: 16px;');
+  alert('Form reset successfully!');
 }
-
+setDefault(myForm: NgForm) {
+   myForm.resetForm({
+    name: 'Default Name',
+    email: 'default@example.com',
+   });
+}
+}
