@@ -16,16 +16,23 @@ import { NotificationComponent } from "./notification/notification.component";
 import { LogMessage1Service } from './services/log-message1.service';
 import { LogMessage2Service } from './services/log-message2.service';
 import { STR_MSG } from './dependencies/injection-token';
+import { AdminDataService } from './services/admin-data.service';
+import { ADMIN_DATA } from './ADMIN_DATA/admin-data';
+import { AlertMessage1Service } from './services/alert-message1.service';
+import { AlertMessage2Service } from './services/alert-message2.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent],
-  providers: [CubeService, PowerService,
+  providers: [CubeService, PowerService,AlertMessage1Service,
+            {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
             {provide: LogMessage2Service, useClass:LogMessage2Service},//This is a class Type Token
             {provide: 'STR_MSG', useValue: 'This is a value Type Token'}, //This is a value Type Token
-            ],
+            {provide: ADMIN_DATA, useValue: ADMIN_DATA}, //This is a object Type Token
+            AdminDataService
+          ],
             templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
@@ -344,7 +351,20 @@ export class AppComponent implements OnInit {
 // this.logger.log();
 // }
 
-constructor(@Inject('STR_MSG') public msg: string) {
+// constructor(@Inject('STR_MSG') public msg: string) {
+// }
+// ngOnInit(): void {}
+
+// constructor(public getAdmin: AdminDataService) {}
+// ngOnInit(): void {}
+
+constructor(private alertMsg: AlertMessage1Service){
 }
-ngOnInit(): void {}
+displayAlert(){
+  this.alertMsg.showAlert();
 }
+ngOnInit(): void {
+}
+
+}
+
