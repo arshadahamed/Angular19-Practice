@@ -24,11 +24,12 @@ import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, FormsModule],
   providers: [CubeService, PowerService,AlertMessage1Service,
             {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
@@ -387,12 +388,20 @@ export class AppComponent {
 //   this.message = this.appUpdateService.getAppUpdate();
 // }
 
-constructor(
-  @Inject('GREETING_MSG_FACTORY') public factoryMsg: string,
-  @Inject('GREETING_MSG_VALUE') public valueMsg: string,
-){
-  console.log('useFactory Message',this.factoryMsg);// This will log the message from the factory function Dynamic Injection Token
-  console.log('useValue Message',this.valueMsg);// This will log the message from the value Type Token
+// constructor(
+//   @Inject('GREETING_MSG_FACTORY') public factoryMsg: string,
+//   @Inject('GREETING_MSG_VALUE') public valueMsg: string,
+// ){
+//   console.log('useFactory Message',this.factoryMsg);// This will log the message from the factory function Dynamic Injection Token
+//   console.log('useValue Message',this.valueMsg);// This will log the message from the value Type Token
+// }
+
+user: { username:string} = { username: '' };
+submitForm(myForm: NgForm){
+  if(myForm.valid){
+    alert(`Form submitted successfully! Username: ${this.user.username}`);
+    console.log(`Form submitted successfully! Username: ${this.user.username}`);
+  }
 }
 }
 

@@ -471,3 +471,11 @@ calc() }"></ng-container> -->
 
 <!-- <h1>UseFactory Property</h1>
 <h3>{{message}}</h3> -->
+
+<form #myForm="ngForm" (ngSubmit)="submitForm(myForm)" >
+  <div>
+    <label for="username">Username</label>
+    <input type="text" name="username" required [(ngModel)]="user.username" />
+  </div>
+  <button type="submit">Submit</button>
+</form>
