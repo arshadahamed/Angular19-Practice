@@ -4,7 +4,7 @@ import { ProductService } from '../dependencies/product.service';
 
 @Component({
   selector: 'app-products',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })

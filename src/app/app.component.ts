@@ -20,6 +20,9 @@ import { AdminDataService } from './services/admin-data.service';
 import { ADMIN_DATA } from './ADMIN_DATA/admin-data';
 import { AlertMessage1Service } from './services/alert-message1.service';
 import { AlertMessage2Service } from './services/alert-message2.service';
+import { MessageService } from './services/message.service';
+import { AppConfigService } from './services/app-config.service';
+import { AppUpdateService } from './services/app-update.service';
 
 @Component({
   selector: 'app-root',
@@ -31,13 +34,18 @@ import { AlertMessage2Service } from './services/alert-message2.service';
             {provide: LogMessage2Service, useClass:LogMessage2Service},//This is a class Type Token
             {provide: 'STR_MSG', useValue: 'This is a value Type Token'}, //This is a value Type Token
             {provide: ADMIN_DATA, useValue: ADMIN_DATA}, //This is a object Type Token
-            AdminDataService
+            {provide: MessageService, useFactory: ()=> new MessageService},
+            {provide: 'APP_UPDATE', useFactory: (configService: AppConfigService) =>
+              configService.getAppConfig(),
+              deps: [AppConfigService]
+            },
+            AppUpdateService,AdminDataService,
           ],
             templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -358,13 +366,21 @@ export class AppComponent implements OnInit {
 // constructor(public getAdmin: AdminDataService) {}
 // ngOnInit(): void {}
 
-constructor(private alertMsg: AlertMessage1Service){
-}
-displayAlert(){
-  this.alertMsg.showAlert();
-}
-ngOnInit(): void {
-}
+// constructor(private alertMsg: AlertMessage1Service){
+// }
+// displayAlert(){
+//   this.alertMsg.showAlert();
+// }
+// ngOnInit(): void {
+// }
 
+// constructor(private msgService: MessageService){
+//   console.log(this.msgService.msg());
+// }
+
+message: string ;
+constructor(private appUpdateService: AppUpdateService) {
+  this.message = this.appUpdateService.getAppUpdate();
+}
 }
 
