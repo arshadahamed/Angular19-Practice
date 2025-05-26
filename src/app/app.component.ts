@@ -23,6 +23,7 @@ import { AlertMessage2Service } from './services/alert-message2.service';
 import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
+import { showGreetingMessage } from './dependencies/showGreeting';
 
 @Component({
   selector: 'app-root',
@@ -39,6 +40,9 @@ import { AppUpdateService } from './services/app-update.service';
               configService.getAppConfig(),
               deps: [AppConfigService]
             },
+            {provide: 'GREETING_MSG_FACTORY', useFactory: showGreetingMessage},// This is a factory function Type Token
+            {provide: 'GREETING_MSG_VALUE', useValue: 'Hello, Angular!'},
+
             AppUpdateService,AdminDataService,
           ],
             templateUrl: './app.component.html',
@@ -378,9 +382,17 @@ export class AppComponent {
 //   console.log(this.msgService.msg());
 // }
 
-message: string ;
-constructor(private appUpdateService: AppUpdateService) {
-  this.message = this.appUpdateService.getAppUpdate();
+// message: string ;
+// constructor(private appUpdateService: AppUpdateService) {
+//   this.message = this.appUpdateService.getAppUpdate();
+// }
+
+constructor(
+  @Inject('GREETING_MSG_FACTORY') public factoryMsg: string,
+  @Inject('GREETING_MSG_VALUE') public valueMsg: string,
+){
+  console.log('useFactory Message',this.factoryMsg);// This will log the message from the factory function Dynamic Injection Token
+  console.log('useValue Message',this.valueMsg);// This will log the message from the value Type Token
 }
 }
 
