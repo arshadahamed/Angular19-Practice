@@ -404,26 +404,57 @@ export class AppComponent {
 //   }
 // }
 
-formSubmit(myForm: NgForm) {
+// formSubmit(myForm: NgForm) {
+//   if (myForm.valid) {
+//     const formValue = JSON.stringify(myForm.value);
+//     console.log(formValue);
+//     console.log('%cForm submitted successfully!', 'color: green; font-weight: bold; font-size: 16px;');
+//     alert(`Form submitted successfully! ${formValue}`);
+//   } else {
+//     console.log('%cForm is invalid!', 'color: red; font-weight: bold; font-size: 16px;');
+//     alert('Form is invalid! Please fill out all required fields.');
+//   }
+// }
+// resetValue(myForm: NgForm) {
+//   myForm.resetForm();
+//   console.log('%cForm reset successfully!', 'color: blue; font-weight: bold; font-size: 16px;');
+//   alert('Form reset successfully!');
+// }
+// setDefault(myForm: NgForm) {
+//    myForm.resetForm({
+//     name: 'Default Name',
+//     email: 'default@example.com',
+//    });
+// }
+
+user:string = '';
+email:string = '';
+selectedCountry:string = '';
+city:string = '';
+countries = [
+  { name: 'India', code: 'IN' },
+  { name: 'United States', code: 'US' },
+  { name: 'United Kingdom', code: 'UK' },
+];
+cities: { [key: string]: string[] } = {
+  IN: ['Delhi', 'Mumbai', 'Bangalore'],
+  US: ['New York', 'Los Angeles', 'Chicago'],
+  UK: ['London', 'Manchester', 'Birmingham'],
+};
+getCitiesByCountry(country:string): string[] {
+  return this.cities[country] || [];
+}
+onSubmit(myForm: NgForm) {
   if (myForm.valid) {
-    const formValue = JSON.stringify(myForm.value);
-    console.log(formValue);
-    console.log('%cForm submitted successfully!', 'color: green; font-weight: bold; font-size: 16px;');
-    alert(`Form submitted successfully! ${formValue}`);
-  } else {
-    console.log('%cForm is invalid!', 'color: red; font-weight: bold; font-size: 16px;');
+    const FormData = {
+      user: this.user,
+      email: this.email,
+      country: this.selectedCountry,
+      city: this.city
+    };
+    console.log('Form submitted successfully!', FormData);
+  }else{
     alert('Form is invalid! Please fill out all required fields.');
   }
-}
-resetValue(myForm: NgForm) {
-  myForm.resetForm();
-  console.log('%cForm reset successfully!', 'color: blue; font-weight: bold; font-size: 16px;');
-  alert('Form reset successfully!');
-}
-setDefault(myForm: NgForm) {
-   myForm.resetForm({
-    name: 'Default Name',
-    email: 'default@example.com',
-   });
 }
 }
