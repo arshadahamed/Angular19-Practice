@@ -24,7 +24,7 @@ import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
-import { NgForm, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -427,15 +427,34 @@ export class AppComponent {
 //    });
 // }
 
-usernameControl = new FormControl('',[
-  Validators.required,
-  Validators.minLength(3),
-  Validators.maxLength(15),
-  Validators.pattern('^[a-zA-Z0-9]+$') // Alphanumeric characters only
-]);
-showValue(){
-  console.log('Username:', this.usernameControl.value);
-  console.log('Validation Status:', this.usernameControl.valid);
-  console.log(this.usernameControl.errors);
+// usernameControl = new FormControl('',[
+//   Validators.required,
+//   Validators.minLength(3),
+//   Validators.maxLength(15),
+//   Validators.pattern('^[a-zA-Z0-9]+$') // Alphanumeric characters only
+// ]);
+// showValue(){
+//   console.log('Username:', this.usernameControl.value);
+//   console.log('Validation Status:', this.usernameControl.valid);
+//   console.log(this.usernameControl.errors);
+// }
+
+myForm: FormGroup;
+constructor() {
+  this.myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+    age: new FormControl('', [Validators.required, Validators.min(18), Validators.max(65)]),
+  });
+}
+onSubmit(){
+  const userAge = this.myForm.get('age')?.value;
+  if (userAge < 18 ){
+    alert('You must be at least 18 years old.');
+    return;
+  }else if (this.myForm.valid) {
+    alert('Form submitted successfully!');
+    console.log('Form submitted successfully!', this.myForm.value);
+  }
 }
 }
