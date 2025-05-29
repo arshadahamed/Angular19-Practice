@@ -24,12 +24,12 @@ import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
-import { NgForm } from '@angular/forms';
+import { NgForm, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, FormsModule],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, FormsModule, ReactiveFormsModule],
   providers: [CubeService, PowerService,AlertMessage1Service,
             {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
@@ -427,34 +427,15 @@ export class AppComponent {
 //    });
 // }
 
-user:string = '';
-email:string = '';
-selectedCountry:string = '';
-city:string = '';
-countries = [
-  { name: 'India', code: 'IN' },
-  { name: 'United States', code: 'US' },
-  { name: 'United Kingdom', code: 'UK' },
-];
-cities: { [key: string]: string[] } = {
-  IN: ['Delhi', 'Mumbai', 'Bangalore'],
-  US: ['New York', 'Los Angeles', 'Chicago'],
-  UK: ['London', 'Manchester', 'Birmingham'],
-};
-getCitiesByCountry(country:string): string[] {
-  return this.cities[country] || [];
-}
-onSubmit(myForm: NgForm) {
-  if (myForm.valid) {
-    const FormData = {
-      user: this.user,
-      email: this.email,
-      country: this.selectedCountry,
-      city: this.city
-    };
-    console.log('Form submitted successfully!', FormData);
-  }else{
-    alert('Form is invalid! Please fill out all required fields.');
-  }
+usernameControl = new FormControl('',[
+  Validators.required,
+  Validators.minLength(3),
+  Validators.maxLength(15),
+  Validators.pattern('^[a-zA-Z0-9]+$') // Alphanumeric characters only
+]);
+showValue(){
+  console.log('Username:', this.usernameControl.value);
+  console.log('Validation Status:', this.usernameControl.valid);
+  console.log(this.usernameControl.errors);
 }
 }

@@ -499,7 +499,7 @@ calc() }"></ng-container> -->
   </form>
 </div> -->
 
-<form class="form-container" #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
+<!-- <form class="form-container" #myform="ngForm" (ngSubmit)="onSubmit(myform)" >
   <div>
       <label for="name">Name: </label>
       <input type="text" name="name" [(ngModel)]="user" required autocomplete="off"/>
@@ -521,4 +521,8 @@ calc() }"></ng-container> -->
       </select>
   </div>
   <button type="submit">Submit</button>
-</form>
+</form> -->
+
+<input type="text" [formControl]="usernameControl"
+placeholder="Enter your username" />
+<button type="submit" (click)="showValue()">Show</button>
