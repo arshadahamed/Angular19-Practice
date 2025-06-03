@@ -23,7 +23,7 @@ import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
-import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -457,10 +457,35 @@ export class AppComponent {
 //   }
 // }
 
+// employeeForm: FormGroup;
+// constructor() {
+//   this.employeeForm = new FormGroup({
+//     employees: new FormArray([]),
+
+//   });
+// }
+// get employees(): FormArray {
+//   return this.employeeForm.get('employees') as FormArray;
+// }
+// addEmployee() : void {
+//   const employeeGroup = new FormGroup({
+//     name:  new FormControl('', Validators.required),
+//     job: new FormControl('', Validators.required),
+//   });
+//   this.employees.push(employeeGroup);
+// }
+// submitForm(){
+//   if (this.employeeForm.invalid){
+//     return;
+//   }else {
+//     console.log('Form submitted successfully!', this.employeeForm.value);
+//   }
+// }
+
 employeeForm: FormGroup;
-constructor() {
-  this.employeeForm = new FormGroup({
-    employees: new FormArray([]),
+constructor(private fb: FormBuilder) {
+  this.employeeForm = this.fb.group({
+    employees: this.fb.array([]),
 
   });
 }
@@ -468,9 +493,9 @@ get employees(): FormArray {
   return this.employeeForm.get('employees') as FormArray;
 }
 addEmployee() : void {
-  const employeeGroup = new FormGroup({
-    name:  new FormControl('', Validators.required),
-    job: new FormControl('', Validators.required),
+  const employeeGroup = this.fb.group({
+    name:  ['', Validators.required],
+    job: ['', Validators.required],
   });
   this.employees.push(employeeGroup);
 }
