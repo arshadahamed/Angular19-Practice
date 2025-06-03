@@ -1,6 +1,5 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, Inject, inject, Injectable, OnInit, ViewChild } from '@angular/core';
 import { RouterLink, RouterOutlet  } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
 import { HighlightElementDirective } from './highlight-element.directive';
@@ -24,12 +23,12 @@ import { MessageService } from './services/message.service';
 import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
-import { NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, ReactiveFormsModule],
   providers: [CubeService, PowerService,AlertMessage1Service,
             {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
@@ -439,22 +438,47 @@ export class AppComponent {
 //   console.log(this.usernameControl.errors);
 // }
 
-myForm: FormGroup;
+// myForm: FormGroup;
+// constructor() {
+//   this.myForm = new FormGroup({
+//     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
+//     email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+//     age: new FormControl('', [Validators.required, Validators.min(18), Validators.max(65)]),
+//   });
+// }
+// onSubmit(){
+//   const userAge = this.myForm.get('age')?.value;
+//   if (userAge < 18 ){
+//     alert('You must be at least 18 years old.');
+//     return;
+//   }else if (this.myForm.valid) {
+//     alert('Form submitted successfully!');
+//     console.log('Form submitted successfully!', this.myForm.value);
+//   }
+// }
+
+employeeForm: FormGroup;
 constructor() {
-  this.myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]),
-    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
-    age: new FormControl('', [Validators.required, Validators.min(18), Validators.max(65)]),
+  this.employeeForm = new FormGroup({
+    employees: new FormArray([]),
+
   });
 }
-onSubmit(){
-  const userAge = this.myForm.get('age')?.value;
-  if (userAge < 18 ){
-    alert('You must be at least 18 years old.');
+get employees(): FormArray {
+  return this.employeeForm.get('employees') as FormArray;
+}
+addEmployee() : void {
+  const employeeGroup = new FormGroup({
+    name:  new FormControl('', Validators.required),
+    job: new FormControl('', Validators.required),
+  });
+  this.employees.push(employeeGroup);
+}
+submitForm(){
+  if (this.employeeForm.invalid){
     return;
-  }else if (this.myForm.valid) {
-    alert('Form submitted successfully!');
-    console.log('Form submitted successfully!', this.myForm.value);
+  }else {
+    console.log('Form submitted successfully!', this.employeeForm.value);
   }
 }
 }
