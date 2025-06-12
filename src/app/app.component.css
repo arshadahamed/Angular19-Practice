@@ -276,3 +276,148 @@ nav a:focus {
 .form-container button:hover {
   background-color: #2563eb;
 }
+
+/* Container Styling */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+.container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.container h4 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #4a4a4a;
+  font-weight: 600;
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* Form Controls */
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #f9f9f9;
+}
+
+.form-control:focus {
+  border-color: #4e91f9;
+  box-shadow: 0 0 5px rgba(78, 145, 249, 0.3);
+  outline: none;
+}
+
+/* Select */
+select.form-control {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23444' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  cursor: pointer;
+  height: 50px;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: #4e91f9;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #367be3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+
+/* Margin spacing */
+.mb-3 {
+  margin-bottom: 20px;
+}
+
+/* Floating label textarea */
+.form-floating {
+  position: relative;
+}
+
+.form-floating textarea {
+  resize: none;
+}
+
+/* Label within floating */
+.form-floating label {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  background: white;
+  padding: 0 5px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.container h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.container h1::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #4e91f9;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  justify-content: center; /* Optional: center align the buttons */
+}
+
+.text-red {
+  color: red;
+}
+.text-green {
+  color: green;
+}

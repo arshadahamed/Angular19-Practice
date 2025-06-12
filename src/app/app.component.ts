@@ -482,28 +482,103 @@ export class AppComponent {
 //   }
 // }
 
-employeeForm: FormGroup;
-constructor(private fb: FormBuilder) {
-  this.employeeForm = this.fb.group({
-    employees: this.fb.array([]),
+// employeeForm: FormGroup;
+// constructor(private fb: FormBuilder) {
+//   this.employeeForm = this.fb.group({
+//     employees: this.fb.array([]),
 
+//   });
+// }
+// get employees(): FormArray {
+//   return this.employeeForm.get('employees') as FormArray;
+// }
+// addEmployee() : void {
+//   const employeeGroup = this.fb.group({
+//     name:  ['', Validators.required],
+//     job: ['', Validators.required],
+//   });
+//   this.employees.push(employeeGroup);
+// }
+// submitForm(){
+//   if (this.employeeForm.invalid){
+//     return;
+//   }else {
+//     console.log('Form submitted successfully!', this.employeeForm.value);
+//   }
+// }
+
+// myForm : FormGroup;
+// nameControl : FormControl;
+// emailControl : FormControl;
+// constructor(){
+//   this.nameControl = new FormControl('',Validators.required);
+//   this.emailControl = new FormControl('', [Validators.required, Validators.email])
+//   this.myForm = new FormGroup({
+//     name:this.nameControl,
+//     email:this.emailControl,
+//   });
+// }
+
+//   formSubmit(){
+//     if(this.myForm.valid){
+//       console.log('Form Values: ', this.myForm.value);
+//     }
+//   }
+
+myForm : FormGroup;
+isSumbitted: boolean = false;
+constructor(private fb: FormBuilder){
+  this.myForm = this.fb.group({
+    userDetails: this.fb.group({
+      fname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password : ['',Validators.required],
+    }),
+    additionalDetails: this.fb.group({
+      mobile: ['', [
+        Validators.required,
+        Validators.pattern(/^(\+94|94|0)?\d{9}$/)
+      ]],
+      address: ['', Validators.required],
+      country: ['', Validators.required],
+      gender:['', Validators.required],
+    }),
   });
 }
-get employees(): FormArray {
-  return this.employeeForm.get('employees') as FormArray;
+step: any =1;
+get userDetails (){
+  return this.myForm.get('userDetails') as FormGroup;
 }
-addEmployee() : void {
-  const employeeGroup = this.fb.group({
-    name:  ['', Validators.required],
-    job: ['', Validators.required],
-  });
-  this.employees.push(employeeGroup);
+get additionalDetails() {
+  return this.myForm.get('additionalDetails') as FormGroup;
 }
-submitForm(){
-  if (this.employeeForm.invalid){
-    return;
-  }else {
-    console.log('Form submitted successfully!', this.employeeForm.value);
+
+get feedback() {
+  return this.myForm.get('feedback') as FormGroup;
+}
+btnPrevious() {
+    this.step -= 1;
+}
+btnNext() {
+    const userDetailsGroup = this.myForm.get('userDetails') as FormGroup;
+    const additionalDetailsGroup = this.myForm.get('additionalDetails') as FormGroup;
+    if(userDetailsGroup.invalid && this.step == 1){
+      return;
+    }
+    if(additionalDetailsGroup.invalid && this.step == 2){
+      return;
+    }
+    if(this.step < 3)
+    {
+      this.step += 1;
+    }
+
+}
+formSubmit(){
+  if(this.myForm.valid){
+    this.isSumbitted = true;
   }
+  console.log(this.myForm.value);
 }
+
 }
