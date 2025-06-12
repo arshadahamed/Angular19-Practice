@@ -610,7 +610,7 @@ placeholder="Enter your username" />
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Email</label>
         <input type="email" class="form-control" id="inputEmail" formControlName="email" />
-        @if (userDetails.get('email')?.invalid && userDetails.get('email')?.touched) {
+        @if (userDetails.get('email')?.dirty && userDetails.get('email')?.touched) {
         <span class="form-label text-red small d-block mt-1">*Please enter a valid email</span>
         }
       </div>
@@ -619,9 +619,15 @@ placeholder="Enter your username" />
       <div class="mb-3">
         <label for="inputPassword" class="form-label">Password</label>
         <input type="password" class="form-control" id="inputPassword" formControlName="password" />
-        @if (userDetails.get('password')?.invalid && userDetails.get('password')?.touched) {
+        @if (userDetails.get('password')?.dirty && userDetails.get('password')?.touched) {
         <span class="form-label text-red small d-block mt-1">*Password is required</span>
         }
+        <!-- <p class="form-label text-blue">
+          Pristine State - {{ userDetails.get("password")?.pristine}}
+        </p>
+        <p class="form-label text-blue">
+          Dirty State - {{ userDetails.get("password")?.dirty}}
+        </p> -->
       </div>
     </ng-container>
     }
@@ -691,7 +697,7 @@ placeholder="Enter your username" />
     <div class="button-group mt-4 d-flex justify-content-center gap-3">
       <button type="button" class="btn btn-primary" (click)="btnPrevious()" *ngIf="step != 1">Previous</button>
       <button type="button" class="btn btn-primary" (click)="btnNext()" *ngIf="step != 3">Next</button>
-      <button type="submit" class="btn btn-success" *ngIf="step == 3">Submit</button>
+      <button type="submit" class="btn btn-success" *ngIf="step == 3" >Submit</button>
     </div>
   </form>
   }
