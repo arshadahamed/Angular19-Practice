@@ -24,6 +24,7 @@ import { AppConfigService } from './services/app-config.service';
 import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
 import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
+import { upperCaseValidator } from './custom-validators/upperCase-validator';
 
 @Component({
   selector: 'app-root',
@@ -530,7 +531,7 @@ isSumbitted: boolean = false;
 constructor(private fb: FormBuilder){
   this.myForm = this.fb.group({
     userDetails: this.fb.group({
-      fname: ['', Validators.required],
+      fname: ['', Validators.required, upperCaseValidator],
       email: ['', [Validators.required, Validators.email]],
       password : ['',Validators.required],
     }),
