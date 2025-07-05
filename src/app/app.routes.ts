@@ -16,6 +16,8 @@ import { ShoesComponent } from './shoes/shoes.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { AdminComponent } from './admin/admin.component';
 import { testGuard } from './test.guard';
+import { LoginComponent } from './login/login.component';
+import { formGuardGuard } from './guards/form-guard.guard';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
@@ -41,5 +43,6 @@ export const routes: Routes = [
   },
   {path:'employee-detail', component:EmployeeDetailComponent}, // Route to EmployeeDetailComponent
   {path:'admin', component:AdminComponent, canActivate: [testGuard]}, // Route to AdminComponent
+  {path: 'form', component: LoginComponent, canDeactivate: [formGuardGuard]}, // Route to LoginComponent
   {path:'**', component:PageNotFoundComponent}, // Wildcard route for a 404 page
 ];
