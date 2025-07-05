@@ -589,6 +589,7 @@ placeholder="Enter your username" />
   </form>
 </div> -->
 
+<!--
 <div class="container">
   <h1>Multi Step Form</h1>
   @if(!isSumbitted){
@@ -597,7 +598,7 @@ placeholder="Enter your username" />
     <ng-container formGroupName="userDetails">
       <h4>User Details</h4>
 
-      <!-- Full Name -->
+
       <div class="mb-3">
         <label for="inputName" class="form-label">Full Name</label>
         <input type="text" class="form-control" id="inputName" formControlName="fname" autocomplete="off" />
@@ -606,7 +607,7 @@ placeholder="Enter your username" />
         }
       </div>
 
-      <!-- Email -->
+
       <div class="mb-3">
         <label for="inputEmail" class="form-label">Email</label>
         <input type="email" class="form-control" id="inputEmail" formControlName="email" />
@@ -615,19 +616,18 @@ placeholder="Enter your username" />
         }
       </div>
 
-      <!-- Password -->
       <div class="mb-3">
         <label for="inputPassword" class="form-label">Password</label>
         <input type="password" class="form-control" id="inputPassword" formControlName="password" />
         @if (userDetails.get('password')?.dirty && userDetails.get('password')?.touched) {
         <span class="form-label text-red small d-block mt-1">*Password is required</span>
         }
-        <!-- <p class="form-label text-blue">
+        <p class="form-label text-blue">
           Pristine State - {{ userDetails.get("password")?.pristine}}
         </p>
         <p class="form-label text-blue">
           Dirty State - {{ userDetails.get("password")?.dirty}}
-        </p> -->
+        </p>
       </div>
     </ng-container>
     }
@@ -636,7 +636,6 @@ placeholder="Enter your username" />
     <ng-container formGroupName="additionalDetails">
       <h4>Additional Details</h4>
 
-      <!-- Phone -->
       <div class="mb-3">
         <label for="inputMobile" class="form-label">Phone Number</label>
         <input type="number" class="form-control" id="inputMobile" placeholder="+94711234567" formControlName="mobile" />
@@ -645,7 +644,7 @@ placeholder="Enter your username" />
         }
       </div>
 
-      <!-- Address -->
+
       <div class="mb-3">
         <div class="form-floating">
           <textarea class="form-control" placeholder="Enter Address" id="floatingTextArea" formControlName="address"></textarea>
@@ -656,7 +655,7 @@ placeholder="Enter your username" />
         }
       </div>
 
-      <!-- Country -->
+
       <div class="mb-3">
         <label for="inputCountry" class="form-label">Country</label>
         <input type="text" class="form-control" id="inputCountry" formControlName="country" />
@@ -665,7 +664,7 @@ placeholder="Enter your username" />
         }
       </div>
 
-      <!-- Gender -->
+
       <div class="mb-3">
         <label for="inputGender" class="form-label">Gender</label>
         <select name="inputGender" id="inputGender" class="form-control" formControlName="gender">
@@ -693,7 +692,7 @@ placeholder="Enter your username" />
     </ng-container>
     }
 
-    <!-- Navigation Buttons -->
+
     <div class="button-group mt-4 d-flex justify-content-center gap-3">
       <button type="button" class="btn btn-primary" (click)="btnPrevious()" *ngIf="step != 1">Previous</button>
       <button type="button" class="btn btn-primary" (click)="btnNext()" *ngIf="step != 3">Next</button>
@@ -706,4 +705,6 @@ placeholder="Enter your username" />
     <h2 class="text-green">Form Submitted Successfully!..</h2>
   </ng-container>
   }
-</div>
+</div>-->
+
+ <router-outlet></router-outlet>
