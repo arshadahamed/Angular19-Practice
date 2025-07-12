@@ -21,11 +21,13 @@ import { LoginComponent } from './component/login/login.component';
 import { formGuardGuard } from './guards/form-guard.guard';
 import { authGuard } from './guards/auth.guard';
 import { AdminComponent } from './component/admin/admin.component';
+import { loadAdminGuard } from './guards/load-admin.guard';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
   {path: '', redirectTo:'/home', pathMatch:'full'}, // Default route
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canMatch: [loadAdminGuard]}, // Route to HomeComponent with a guard
+  {path: 'home', component: ParentComponent},
   {path: 'about', component:AboutComponent},
   {path: 'contact', component:ContactComponent},
   {path: 'services', component:ServicesComponent},
@@ -40,7 +42,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login' }, // Wildcard route for a 404 page
   {path:'employee', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
   {path:'employee-detail', component:EmployeeDetailComponent}, // Route to EmployeeDetailComponent
   {path:'', redirectTo:'/login', pathMatch:'full'}, // Redirect to EmployeeComponent if no route is specified
