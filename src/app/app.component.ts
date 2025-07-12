@@ -25,12 +25,12 @@ import { AppUpdateService } from './services/app-update.service';
 import { showGreetingMessage } from './dependencies/showGreeting';
 import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
 import { upperCaseValidator } from './custom-validators/upperCase-validator';
-
+import { AuthService } from './authentication/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, ReactiveFormsModule],
-  providers: [CubeService, PowerService,AlertMessage1Service,
+  providers: [CubeService, PowerService,AlertMessage1Service,AuthService,
             {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
             {provide: LogMessage2Service, useClass:LogMessage2Service},//This is a class Type Token

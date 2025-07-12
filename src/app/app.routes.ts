@@ -14,11 +14,13 @@ import { ShirtsComponent } from './shirts/shirts.component';
 import { PantsComponent } from './pants/pants.component';
 import { ShoesComponent } from './shoes/shoes.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
-import { AdminComponent } from './admin/admin.component';
+// import { AdminComponent } from './admin/admin.component';
 import { testGuard } from './test.guard';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './component/login/login.component';
+// import { LoginComponent } from './component/login/login.component';
 import { formGuardGuard } from './guards/form-guard.guard';
 import { authGuard } from './guards/auth.guard';
+import { AdminComponent } from './component/admin/admin.component';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
@@ -35,10 +37,15 @@ export const routes: Routes = [
       {path: 'shoes', component:ShoesComponent}
     ]
   },
+  { path: 'login', component: LoginComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/login' }, // Wildcard route for a 404 page
   {path:'employee', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
   {path:'employee-detail', component:EmployeeDetailComponent}, // Route to EmployeeDetailComponent
-  {path:'admin', component:AdminComponent, canActivate: [testGuard]}, // Route to AdminComponent
-  {path: 'form', component: LoginComponent, canDeactivate: [formGuardGuard]}, // Route to LoginComponent
+  {path:'', redirectTo:'/login', pathMatch:'full'}, // Redirect to EmployeeComponent if no route is specified
+  // {path:'admin', component:AdminComponent, canActivate: [testGuard]}, // Route to AdminComponent
+  // {path: 'form', component: LoginComponent, canDeactivate: [formGuardGuard]}, // Route to LoginComponent
   {
     path: 'parent',
     component: ParentComponent,
