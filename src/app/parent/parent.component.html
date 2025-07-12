@@ -1,9 +1,26 @@
 <div class="container">
-  <h2>Parent Component</h2>
-  <ul>
-    <li><a href="#" routerLink="/parent/child1">Child 1</a></li>
-    <li><a href="#" routerLink="/parent/child2">Child 2</a></li>
-  </ul>
-  <hr/>
-  <router-outlet></router-outlet>
-</div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Parent Component</h2>
+            </div>
+            <div class="panel-body">
+                <nav>
+                    <ul class="nav nav-pills">
+                        <li role="presentation">
+                            <a href="#" routerLink="/parent/child1" class="btn btn-primary">Child 1</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#" routerLink="/parent/child2" class="btn btn-primary">Child 2</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <hr/>
+                <button class="btn btn-primary" type="button" (click)="enableRoutes()">Enable Child Routes</button>
+
+                <div class="well">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>

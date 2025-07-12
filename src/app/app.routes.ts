@@ -18,6 +18,7 @@ import { AdminComponent } from './admin/admin.component';
 import { testGuard } from './test.guard';
 import { LoginComponent } from './login/login.component';
 import { formGuardGuard } from './guards/form-guard.guard';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
@@ -35,14 +36,18 @@ export const routes: Routes = [
     ]
   },
   {path:'employee', component:EmployeeComponent}, // Route with a parameter Dynamic Routes
-  {path: 'parent', component:ParentComponent,
-    children:[
-    {path: 'child1', component: ChildComponent},
-    {path: 'child2', component: Child2Component},
-    ],
-  },
   {path:'employee-detail', component:EmployeeDetailComponent}, // Route to EmployeeDetailComponent
   {path:'admin', component:AdminComponent, canActivate: [testGuard]}, // Route to AdminComponent
   {path: 'form', component: LoginComponent, canDeactivate: [formGuardGuard]}, // Route to LoginComponent
+  {
+    path: 'parent',
+    component: ParentComponent,
+    canActivateChild: [authGuard],
+    children: [
+      { path: 'child1', component: ChildComponent },
+      { path: 'child2', component: Child2Component },
+    ]
+  },
+  {path: '**', redirectTo: '/parent', pathMatch: 'full'}, // Redirect to PageNotFoundComponent for any unmatched routes
   {path:'**', component:PageNotFoundComponent}, // Wildcard route for a 404 page
 ];
