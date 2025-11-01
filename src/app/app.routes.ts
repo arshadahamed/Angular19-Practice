@@ -22,13 +22,17 @@ import { formGuardGuard } from './guards/form-guard.guard';
 import { authGuard } from './guards/auth.guard';
 import { AdminComponent } from './component/admin/admin.component';
 import { loadAdminGuard } from './guards/load-admin.guard';
+import { FirstComponent } from './first/first.component';
+import { SecondComponent } from './second/second.component';
 
 export const routes: Routes = [
   // {path: '', component: AppComponent}, // Default route
   {path: '', redirectTo:'/home', pathMatch:'full'}, // Default route
-  {path: 'home', component: HomeComponent, canMatch: [loadAdminGuard]}, // Route to HomeComponent with a guard
-  {path: 'home', component: ParentComponent},
-  {path: 'about', component:AboutComponent},
+  {path: 'home', component: HomeComponent},
+  {path: 'first', component: FirstComponent}, // Eagerly loaded
+  {path: 'second', loadComponent: () => import('./second/second.component').then(m => m.SecondComponent),
+    data : { preLoad: true } // Lazy loaded with preloading strategy
+  }, // Lazy loaded  {path: 'about', component:AboutComponent},
   {path: 'contact', component:ContactComponent},
   {path: 'services', component:ServicesComponent},
   {path: 'products', component:ProductsComponent,

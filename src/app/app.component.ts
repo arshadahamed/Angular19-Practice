@@ -1,5 +1,5 @@
 import { AfterContentInit, AfterViewInit, Component, ElementRef, HostBinding, Inject, inject, Injectable, OnInit, ViewChild } from '@angular/core';
-import { RouterLink, RouterOutlet  } from '@angular/router';
+import { provideRouter, RouterLink, RouterOutlet  } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TestComponent } from './test/test.component';
 import { HighlightElementDirective } from './highlight-element.directive';
@@ -26,10 +26,11 @@ import { showGreetingMessage } from './dependencies/showGreeting';
 import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
 import { upperCaseValidator } from './custom-validators/upperCase-validator';
 import { AuthService } from './authentication/auth.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, CommonModule, RouterOutlet, RouterLink, ProductsComponent, NotificationComponent, NotificationComponent, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, RouterOutlet, ReactiveFormsModule],
   providers: [CubeService, PowerService,AlertMessage1Service,AuthService,
             {provide: AlertMessage2Service, useExisting:AlertMessage1Service},
             {provide: 'LOG_MSG1', useClass:LogMessage1Service},//This is a string Type Token
@@ -526,60 +527,66 @@ export class AppComponent {
 //     }
 //   }
 
-myForm : FormGroup;
-isSumbitted: boolean = false;
-constructor(private fb: FormBuilder){
-  this.myForm = this.fb.group({
-    userDetails: this.fb.group({
-      fname: ['', Validators.required, upperCaseValidator],
-      email: ['', [Validators.required, Validators.email]],
-      password : ['',Validators.required],
-    }),
-    additionalDetails: this.fb.group({
-      mobile: ['', [
-        Validators.required,
-        Validators.pattern(/^(\+94|94|0)?\d{9}$/)
-      ]],
-      address: ['', Validators.required],
-      country: ['', Validators.required],
-      gender:['', Validators.required],
-    }),
-  });
-}
-step: any =1;
-get userDetails (){
-  return this.myForm.get('userDetails') as FormGroup;
-}
-get additionalDetails() {
-  return this.myForm.get('additionalDetails') as FormGroup;
-}
+// myForm : FormGroup;
+// isSumbitted: boolean = false;
+// constructor(private fb: FormBuilder){
+//   this.myForm = this.fb.group({
+//     userDetails: this.fb.group({
+//       fname: ['', Validators.required, upperCaseValidator],
+//       email: ['', [Validators.required, Validators.email]],
+//       password : ['',Validators.required],
+//     }),
+//     additionalDetails: this.fb.group({
+//       mobile: ['', [
+//         Validators.required,
+//         Validators.pattern(/^(\+94|94|0)?\d{9}$/)
+//       ]],
+//       address: ['', Validators.required],
+//       country: ['', Validators.required],
+//       gender:['', Validators.required],
+//     }),
+//   });
+// }
+// step: any =1;
+// get userDetails (){
+//   return this.myForm.get('userDetails') as FormGroup;
+// }
+// get additionalDetails() {
+//   return this.myForm.get('additionalDetails') as FormGroup;
+// }
 
-get feedback() {
-  return this.myForm.get('feedback') as FormGroup;
-}
-btnPrevious() {
-    this.step -= 1;
-}
-btnNext() {
-    const userDetailsGroup = this.myForm.get('userDetails') as FormGroup;
-    const additionalDetailsGroup = this.myForm.get('additionalDetails') as FormGroup;
-    if(userDetailsGroup.invalid && this.step == 1){
-      return;
-    }
-    if(additionalDetailsGroup.invalid && this.step == 2){
-      return;
-    }
-    if(this.step < 3)
-    {
-      this.step += 1;
-    }
+// get feedback() {
+//   return this.myForm.get('feedback') as FormGroup;
+// }
+// btnPrevious() {
+//     this.step -= 1;
+// }
+// btnNext() {
+//     const userDetailsGroup = this.myForm.get('userDetails') as FormGroup;
+//     const additionalDetailsGroup = this.myForm.get('additionalDetails') as FormGroup;
+//     if(userDetailsGroup.invalid && this.step == 1){
+//       return;
+//     }
+//     if(additionalDetailsGroup.invalid && this.step == 2){
+//       return;
+//     }
+//     if(this.step < 3)
+//     {
+//       this.step += 1;
+//     }
 
-}
-formSubmit(){
-  if(this.myForm.valid){
-    this.isSumbitted = true;
-  }
-  console.log(this.myForm.value);
+// }
+// formSubmit(){
+//   if(this.myForm.valid){
+//     this.isSumbitted = true;
+//   }
+//   console.log(this.myForm.value);
+// }
+
+constructor(){
+  const observable = new Observable((observer) => {
+    console.log('Observable executed');
+  }).subscribe();
 }
 
 }
