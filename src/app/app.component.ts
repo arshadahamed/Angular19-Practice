@@ -583,10 +583,52 @@ export class AppComponent {
 //   console.log(this.myForm.value);
 // }
 
-constructor(){
-  const observable = new Observable((observer) => {
-    console.log('Observable executed');
-  }).subscribe();
-}
+// constructor(){
+//   const observable = new Observable((observer) => {
+//     console.log('Observable executed');
+//   }).subscribe();
+// }
 
+// observable =  new Observable((observer) => {
+//   observer.next('First Data Packet');
+//   observer.error('An error occurred!');
+//   observer.complete();
+// }).subscribe({
+//   next(data){
+//     console.log('Recieved Value : ',data);
+//   },
+//   error(err){
+//     console.log('Error Occurred : ', err);
+//   },
+//   complete(){
+//     console.log('Observable completed');
+//   }
+// });
+
+observable =  new Observable((observer) => {
+  observer.next('First Data Packet');
+  observer.next('Second Data Packet');
+  observer.next('Third Data Packet');
+  observer.error('Five!');
+
+  setTimeout(() => {
+    console.log('Emitting after 2 seconds');
+    observer.next('Fourth Data Packet after 2 seconds');
+    observer.complete();
+  }, 2000);
+});
+constructor() {
+  console.log('Before subscribing to the observable');
+  this.observable.subscribe({
+    next(data) {
+      console.log('Received Value : ', data);
+    },
+    error(err) {
+      console.log('Error Occurred : ', err);
+    },
+    complete() {
+      console.log('Observable subscription completed');
+    }
+  });
+}
 }
