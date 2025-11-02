@@ -605,30 +605,54 @@ export class AppComponent {
 //   }
 // });
 
-observable =  new Observable((observer) => {
-  observer.next('First Data Packet');
-  observer.next('Second Data Packet');
-  observer.next('Third Data Packet');
-  observer.error('Five!');
+// observable =  new Observable((observer) => {
+//   observer.next('First Data Packet');
+//   observer.next('Second Data Packet');
+//   observer.next('Third Data Packet');
+//   observer.error('Five !');
 
-  setTimeout(() => {
-    console.log('Emitting after 2 seconds');
-    observer.next('Fourth Data Packet after 2 seconds');
-    observer.complete();
-  }, 2000);
+//   setTimeout(() => {
+//     console.log('Emitting after 2 seconds');
+//     observer.next('Fourth Data Packet after 2 seconds');
+//     observer.complete();
+//   }, 2000);
+// });
+// constructor() {
+//   console.log('Before subscribing to the observable');
+//   this.observable.subscribe({
+//     next(data) {
+//       console.log('Received Value : ', data);
+//     },
+//     error(err) {
+//       console.log('Error Occurred : ', err);
+//     },
+//     complete() {
+//       console.log('Observable subscription completed');
+//     }
+//   });
+// }
+
+observable = new Observable<number>((observer) => {
+  let count = 0;
+
+  const intervalId = setInterval(() => {
+    observer.next(count++);
+  }, 1000);
+
+  return () => {
+    clearInterval(intervalId);
+    console.log('Interval cleaned up');
+  };
 });
 constructor() {
-  console.log('Before subscribing to the observable');
-  this.observable.subscribe({
-    next(data) {
-      console.log('Received Value : ', data);
-    },
-    error(err) {
-      console.log('Error Occurred : ', err);
-    },
-    complete() {
-      console.log('Observable subscription completed');
-    }
+ const subscription = this.observable.subscribe((data) => {
+    console.log('Counter Value: ', data);
   });
+
+  setTimeout(() => {
+    subscription.unsubscribe();
+    console.log('Unsubscribed from the observable after 10 seconds');
+  }, 5000);
+
 }
 }
