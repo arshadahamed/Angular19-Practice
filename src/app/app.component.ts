@@ -26,7 +26,7 @@ import { showGreetingMessage } from './dependencies/showGreeting';
 import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
 import { upperCaseValidator } from './custom-validators/upperCase-validator';
 import { AuthService } from './authentication/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -688,21 +688,32 @@ export class AppComponent {
 //   });
 // }
 
-jsonData$: Observable<any> | undefined;
-constructor() {
-  this.fetchData();
-}
-fetchData() {
-  this.jsonData$ = new Observable<any>((observer) => {
-    fetch('https://dummyjson.com/products/category-list')
-      .then((response) => response.json())
-      .then((data) => {
-        observer.next(data);
-        observer.complete();
-      })
-      .catch((error) => {
-        observer.error('Error fetching data: ' + error);
-      });
+// jsonData$: Observable<any> | undefined;
+// constructor() {
+//   this.fetchData();
+// }
+// fetchData() {
+//   this.jsonData$ = new Observable<any>((observer) => {
+//     fetch('https://dummyjson.com/products/category-list')
+//       .then((response) => response.json())
+//       .then((data) => {
+//         observer.next(data);
+//         observer.complete();
+//       })
+//       .catch((error) => {
+//         observer.error('Error fetching data: ' + error);
+//       });
+//   });
+// }
+
+constructor (){
+  const observable$ = of(
+    {name:'Arshad', age:30},
+    [1,2,3,4,5],
+    () => 'Hello'
+  );
+  observable$.subscribe((val) => {
+    console.log('Emitted Value : ', val);
   });
 }
 }
