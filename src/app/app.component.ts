@@ -632,27 +632,59 @@ export class AppComponent {
 //   });
 // }
 
-observable = new Observable<number>((observer) => {
-  let count = 0;
+// observable = new Observable<number>((observer) => {
+//   let count = 0;
 
-  const intervalId = setInterval(() => {
-    observer.next(count++);
-  }, 1000);
+//   const intervalId = setInterval(() => {
+//     observer.next(count++);
+//   }, 1000);
 
-  return () => {
-    clearInterval(intervalId);
-    console.log('Interval cleaned up');
-  };
-});
+//   return () => {
+//     clearInterval(intervalId);
+//     console.log('Interval cleaned up');
+//   };
+// });
+// constructor() {
+//  const subscription = this.observable.subscribe((data) => {
+//     console.log('Counter Value: ', data);
+//   });
+
+//   setTimeout(() => {
+//     subscription.unsubscribe();
+//     console.log('Unsubscribed from the observable after 10 seconds');
+//   }, 5000);
+
+// }
+
+// value$: Observable<number>;
+// constructor() {
+//   this.value$ = new Observable<number>((observer) => {
+//     setTimeout(() => {
+//       observer.next(1);
+//       observer.next(2);
+//       observer.next(3);
+//       observer.next(4);
+//       observer.complete();
+//     }, 2000);
+//   });
+// }
+
+// value$: Observable<number[]>;
+// constructor() {
+//   this.value$ = new Observable<number[]>((observer) => {
+//     setTimeout(() => {
+//       observer.next([10, 20, 30, 40, 50]);
+//       observer.complete();
+//     }, 2000);
+//   });
+// }
+
+resolvePromise$: Promise<string>;
 constructor() {
- const subscription = this.observable.subscribe((data) => {
-    console.log('Counter Value: ', data);
+  this.resolvePromise$ = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Promise Resolved Successfully after 2 seconds!');
+    }, 2000);
   });
-
-  setTimeout(() => {
-    subscription.unsubscribe();
-    console.log('Unsubscribed from the observable after 10 seconds');
-  }, 5000);
-
 }
 }

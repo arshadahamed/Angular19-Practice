@@ -708,3 +708,11 @@ placeholder="Enter your username" />
 </div>-->
 
  <router-outlet></router-outlet>
+
+ <!-- <h1>Understanding Async Pipe</h1>
+ @for (v of value$ | async; track v) {
+   <p>{{ v }}</p>
+ } -->
+
+ <h1>Understanding Async Pipe</h1>
+ <p>{{ resolvePromise$ | async }}</p>
