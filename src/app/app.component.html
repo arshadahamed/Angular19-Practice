@@ -714,5 +714,31 @@ placeholder="Enter your username" />
    <p>{{ v }}</p>
  } -->
 
- <h1>Understanding Async Pipe</h1>
- <p>{{ resolvePromise$ | async }}</p>
+ <!-- <h1>Understanding Async Pipe</h1>
+ <p>{{ resolvePromise$ | async }}</p> -->
+
+<div class="table-container">
+  <h1>Fetching Data From JSON</h1>
+
+  <ng-container>
+    @if (jsonData$ | async; as data) {
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (category of data; track category) {
+            <tr>
+              <td>{{ category }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }@else {
+      <p>No categories found.</p>
+    }
+  </ng-container>
+</div>
+

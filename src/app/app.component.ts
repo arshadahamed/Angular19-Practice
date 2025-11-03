@@ -679,12 +679,30 @@ export class AppComponent {
 //   });
 // }
 
-resolvePromise$: Promise<string>;
+// resolvePromise$: Promise<string>;
+// constructor() {
+//   this.resolvePromise$ = new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve('Promise Resolved Successfully after 2 seconds!');
+//     }, 2000);
+//   });
+// }
+
+jsonData$: Observable<any> | undefined;
 constructor() {
-  this.resolvePromise$ = new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('Promise Resolved Successfully after 2 seconds!');
-    }, 2000);
+  this.fetchData();
+}
+fetchData() {
+  this.jsonData$ = new Observable<any>((observer) => {
+    fetch('https://dummyjson.com/products/category-list')
+      .then((response) => response.json())
+      .then((data) => {
+        observer.next(data);
+        observer.complete();
+      })
+      .catch((error) => {
+        observer.error('Error fetching data: ' + error);
+      });
   });
 }
 }
