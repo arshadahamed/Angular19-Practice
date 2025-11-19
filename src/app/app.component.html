@@ -742,7 +742,7 @@ placeholder="Enter your username" />
   </ng-container>
 </div> -->
 
-<h1>RxJS (Timer) operator</h1>
+<!-- <h1>RxJS (Timer) operator</h1>
 <div *ngIf="isLoading; else fetchContent">
   <div class="loading-spinner">
     Loading...
@@ -758,4 +758,15 @@ placeholder="Enter your username" />
   <div>
     <p>{{ fetchData }}</p>
   </div>
-</ng-template>
+</ng-template> -->
+
+<div>
+  <button (click)="getData()">Get Data</button>
+</div>
+@if(loadData){
+<ng-container>
+  <h3>Response</h3>
+  <pre>{{ responseData  | json}}</pre>
+</ng-container>
+}
+

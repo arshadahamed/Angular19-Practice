@@ -538,3 +538,26 @@ tr:hover {
         transform: rotate(360deg);
     }
 }
+
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.product-card {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f7f7f7;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.thumbnail {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}

@@ -27,6 +27,8 @@ import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, Form
 import { upperCaseValidator } from './custom-validators/upperCase-validator';
 import { AuthService } from './authentication/auth.service';
 import { interval, Observable, of, timer } from 'rxjs';
+import { HttpClient} from '@angular/common/http';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -718,14 +720,20 @@ export class AppComponent implements OnInit {
 // }
 
 
-fetchData: string = '';
-isLoading: boolean = true;
-ngOnInit(): void {
-  timer(3000).subscribe(() => {
-    this.isLoading = false;
-    this.fetchData = 'Data fetched successfully after 3 seconds!';
+responseData:any;
+loadData: boolean = false;
+constructor(private http: HttpClient){}
 
+getData(){
+  this.http.get('https://jsonplaceholder.typicode.com/users')
+  .subscribe((data) => {
+    this.responseData = data;
+    this.loadData = true;
   });
+}
+
+ngOnInit(): void {
 
 }
+
 }
