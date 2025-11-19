@@ -26,7 +26,7 @@ import { showGreetingMessage } from './dependencies/showGreeting';
 import { FormsModule, NgForm, ReactiveFormsModule, FormControl, Validators, FormGroup, FormArray, Form, FormBuilder } from '@angular/forms';
 import { upperCaseValidator } from './custom-validators/upperCase-validator';
 import { AuthService } from './authentication/auth.service';
-import { Observable, of } from 'rxjs';
+import { interval, Observable, of, timer } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -51,7 +51,7 @@ import { Observable, of } from 'rxjs';
   styleUrl: './app.component.css',
 
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -706,14 +706,19 @@ export class AppComponent {
 //   });
 // }
 
-constructor (){
-  const observable$ = of(
-    {name:'Arshad', age:30},
-    [1,2,3,4,5],
-    () => 'Hello'
-  );
-  observable$.subscribe((val) => {
-    console.log('Emitted Value : ', val);
-  });
+// constructor (){
+//   const observable$ = of(
+//     {name:'Arshad', age:30},
+//     [1,2,3,4,5],
+//     () => 'Hello'
+//   );
+//   observable$.subscribe((val) => {
+//     console.log('Emitted Value : ', val);
+//   });
+// }
+
+ngOnInit(): void {
+   timer(0,1000).subscribe((val) => console.log(`Timer Value :  ${val}`));
+   interval(1000).subscribe((val) => console.log(`Interval Value :  ${val}`));
 }
 }
