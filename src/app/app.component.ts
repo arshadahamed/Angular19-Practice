@@ -717,8 +717,15 @@ export class AppComponent implements OnInit {
 //   });
 // }
 
+
+fetchData: string = '';
+isLoading: boolean = true;
 ngOnInit(): void {
-   timer(0,1000).subscribe((val) => console.log(`Timer Value :  ${val}`));
-   interval(1000).subscribe((val) => console.log(`Interval Value :  ${val}`));
+  timer(3000).subscribe(() => {
+    this.isLoading = false;
+    this.fetchData = 'Data fetched successfully after 3 seconds!';
+
+  });
+
 }
 }

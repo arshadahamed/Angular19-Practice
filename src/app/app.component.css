@@ -476,3 +476,65 @@ tr:hover {
   background-color: #f9fafb;
   transition: background-color 0.2s ease;
 }
+
+/* Container for the spinner, used to center it */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* Styles for the animated ring itself */
+.lbs-ring {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-top: 15px;
+}
+
+/* The 4 div elements inside lbs-ring are used to create the ring effect */
+.lbs-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid #007bff;
+    border-radius: 50%;
+    animation: lbs-ring-spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #007bff transparent transparent transparent;
+}
+
+/* Delay the start of the animation for the inner divs to create a complex spin */
+.lbs-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.lbs-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.lbs-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+}
+
+/* Keyframes for the actual rotation animation */
+@keyframes lbs-ring-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
