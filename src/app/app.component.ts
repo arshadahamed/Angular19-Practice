@@ -720,15 +720,26 @@ export class AppComponent {
 // }
 
 
-responseData$: Observable<any> | undefined;
-loadData: boolean = false;
-constructor(private http: HttpClient){}
-getData(){
-  this.responseData$ = this.http.get(
-    'https://jsonplaceholder.typicode.com/users'
-  );
-  this.loadData = true;
+// responseData$: Observable<any> | undefined;
+// loadData: boolean = false;
+// constructor(private http: HttpClient){}
+// getData(){
+//   this.responseData$ = this.http.get(
+//     'https://jsonplaceholder.typicode.com/users'
+//   );
+//   this.loadData = true;
+// }
+
+constructor (private http: HttpClient){}
+postData(){
+  const user = {
+    id: 11,
+    name: 'Arshad',
+    email: 'arshad@example.com',
+  };
+  this.http.post('http://localhost:3000/user', user)
+  .subscribe((res) => console.log('Post Response : ', res));
+  }
 }
 
 
-}
