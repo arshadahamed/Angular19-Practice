@@ -53,7 +53,7 @@ import { HttpClient} from '@angular/common/http';
   styleUrl: './app.component.css',
 
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 // inputValue: string= 'Hello';
 // isDisabled: boolean = false;
 
@@ -720,20 +720,15 @@ export class AppComponent implements OnInit {
 // }
 
 
-responseData:any;
+responseData$: Observable<any> | undefined;
 loadData: boolean = false;
 constructor(private http: HttpClient){}
-
 getData(){
-  this.http.get('https://jsonplaceholder.typicode.com/users')
-  .subscribe((data) => {
-    this.responseData = data;
-    this.loadData = true;
-  });
+  this.responseData$ = this.http.get(
+    'https://jsonplaceholder.typicode.com/users'
+  );
+  this.loadData = true;
 }
 
-ngOnInit(): void {
-
-}
 
 }
